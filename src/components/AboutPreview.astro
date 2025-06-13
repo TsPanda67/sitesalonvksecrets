@@ -1,0 +1,52 @@
+---
+// src/components/AboutPreview.astro
+import Button from './Button.astro';
+export interface Props {
+  bgColor?: string;
+  imageSrc: string;
+  imageAlt: string;
+  subTitle: string;
+  title: string;
+  text1: string;
+  text2?: string;
+  buttonHref: string;
+  buttonText: string;
+  animationDelay?: string;
+}
+const { 
+  bgColor = "bg-background-light", 
+  imageSrc, 
+  imageAlt, 
+  subTitle, 
+  title, 
+  text1, 
+  text2, 
+  buttonHref, 
+  buttonText,
+  animationDelay = "0s"
+} = Astro.props;
+---
+<section class:list={["section-padding", bgColor]}>
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 slide-up" style={`animation-delay: ${animationDelay};`}>
+      <div class="md:w-5/12 lg:w-1/2">
+        <img 
+          src={imageSrc} 
+          alt={imageAlt} 
+          class="rounded-xl shadow-medium w-full aspect-square md:aspect-[4/3] object-cover"
+          loading="lazy"
+        />
+      </div>
+      <div class="md:w-7/12 lg:w-1/2 text-center md:text-left">
+        <span class="font-sans text-sm font-semibold text-primary-500 uppercase tracking-wider block mb-2">{subTitle}</span>
+        <h2 class="font-display text-3xl lg:text-4xl mb-3 text-text-dark">{title}</h2>
+        <div class="w-16 h-1 bg-primary-400 mx-auto md:mx-0 mb-6"></div> {/* Ligne décorative */}
+        <p class="font-sans text-lg text-text-medium mb-6 leading-relaxed">{text1}</p>
+        {text2 && <p class="font-sans text-lg text-text-medium mb-8 leading-relaxed">{text2}</p>}
+        <Button href={buttonHref} variant="outline" size="lg"> {/* Utilise votre variante 'outline' */}
+          {buttonText}
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

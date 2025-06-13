@@ -1,0 +1,81 @@
+---
+// src/components/Header.astro
+import Logo from './Logo.astro';
+import NavLink from './NavLink.astro'; // Assurez-vous que ce composant n'a pas d'erreur
+
+const phoneNumber = "07 83 96 05 43";
+const telLink = `tel:+33${phoneNumber.replace(/\s/g, '')}`;
+---
+
+<header class="bg-white/90 backdrop-blur-md sticky top-0 z-40 shadow-soft">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center h-20 md:h-24">
+      {/* 1. Logo */}
+      <a href="/" class="z-50 flex-shrink-0" aria-label="Accueil Salon VK Secrets">
+        <Logo />
+      </a>
+      
+      {/* 2. Navigation Desktop & Numéro de Téléphone */}
+      <div class="hidden md:flex items-center space-x-8">
+        <nav aria-label="Navigation principale">
+          <ul class="flex space-x-6 lg:space-x-8 items-center">
+            <li><NavLink href="/">Accueil</NavLink></li>
+            <li><NavLink href="/a-propos">Mon histoire</NavLink></li>
+            <li><NavLink href="/prestations">Prestations</NavLink></li>
+            <li><NavLink href="/contact">Contact</NavLink></li>
+            <li><NavLink href="/blog">Blog</NavLink></li>
+          </ul>
+        </nav>
+        <div class="flex items-center gap-2 text-accent-700 px-4 py-2 border-2 border-primary-300 rounded-full hover:bg-primary-100 hover:border-primary-400 transition-colors duration-300 hover-lift">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <a href={telLink} class="font-sans font-semibold text-accent-700">{phoneNumber}</a>
+        </div>
+      </div>
+      
+      {/* 3. Bouton Menu Mobile - HTML simplifié pour test */}
+      <button 
+        id="menuToggleBtn" 
+        class="md:hidden flex flex-col justify-center items-center w-10 h-10 z-50 bg-primary-500 text-white rounded-lg shadow-soft focus:outline-none focus:ring-2 focus:ring-primary-300"
+        aria-label="Ouvrir menu"
+      >
+        <span class="block w-6 h-0.5 bg-white mb-1.5"></span>
+        <span class="block w-6 h-0.5 bg-white mb-1.5"></span>
+        <span class="block w-6 h-0.5 bg-white"></span>
+      </button>
+      {/* Le menu mobile overlay est maintenant déplacé dans Layout.astro pour recouvrir toute la page */}
+    </div>
+  </div> 
+</header>
+
+<!-- Script de test minimal pour voir si le bouton est trouvé APRÈS que le DOM soit chargé -->
+<script is:inline>
+  function openMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    if (menu) {
+      menu.classList.add('opacity-100', 'pointer-events-auto', 'visible');
+      menu.classList.remove('opacity-0', 'pointer-events-none', 'invisible');
+    }
+  }
+  function closeMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    if (menu) {
+      menu.classList.remove('opacity-100', 'pointer-events-auto', 'visible');
+      menu.classList.add('opacity-0', 'pointer-events-none', 'invisible');
+    }
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('menuToggleBtn');
+    const closeBtn = document.getElementById('closeMenuBtn');
+    if (menuToggle) {
+      menuToggle.addEventListener('click', openMobileMenu);
+    }
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeMobileMenu);
+    }
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+  });
+</script>
