@@ -1,0 +1,102 @@
+---
+// src/components/Footer.astro
+import SocialIcon from './SocialIcon.astro'; // Assurez-vous que SocialIcon.astro gère bien les aria-label
+
+// Informations (pourrait être importé d'un fichier de config global à terme)
+const contactInfo = {
+  phone: "07 83 96 05 43",
+  telLink: "tel:+33783960543", // Version nettoyée pour href
+  email: "salonvksecrets@gmail.com",
+  address: "85 Route d'Altenheim, 67100 Strasbourg"
+};
+
+// Horaires (synchronisés avec ceux de Layout.astro/Schema)
+const openingHours = [
+  { day: "Lundi", hours: "10h00 - 20h30" },
+  { day: "Mardi", hours: "10h00 - 17h00" },
+  { day: "Mercredi", hours: "Fermé" },
+  { day: "Jeudi", hours: "10h00 - 20h30" },
+  { day: "Vendredi", hours: "10h00 - 20h30" },
+  { day: "Samedi & Dimanche", hours: "Sur rendez-vous" }
+];
+
+const socialLinks = {
+  // URLs propres et canoniques
+  facebook: "https://www.facebook.com/salonvksecrets", 
+  instagram: "https://www.instagram.com/salonvksecrets/"
+};
+---
+
+<footer class="bg-accent-900 text-primary-100 section-padding"> {/* Utilisation de section-padding et text-primary-100 pour contraste */}
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+      {/* Informations de Contact */}
+      <div class="text-center md:text-left">
+        <h3 class="font-script text-3xl mb-6 text-white">Nous Contacter</h3>
+        <div class="flex flex-col space-y-3 font-sans">
+          <p class="flex items-center justify-center md:justify-start gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <a href={contactInfo.telLink} class="hover:text-primary-300 transition-colors">{contactInfo.phone}</a>
+          </p>
+          <p class="flex items-center justify-center md:justify-start gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <a href={`mailto:${contactInfo.email}`} class="hover:text-primary-300 transition-colors break-all">{contactInfo.email}</a>
+          </p>
+          <p class="flex items-start justify-center md:justify-start gap-3"> {/* items-start pour adresses longues */}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-400 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <address class="not-italic leading-relaxed">{contactInfo.address}</address>
+          </p>
+        </div>
+      </div>
+      
+      {/* Horaires d'Ouverture */}
+      <div class="text-center">
+        <h3 class="font-script text-3xl mb-6 text-white">Horaires d'Ouverture</h3>
+        <p class="mb-3 font-sans italic text-primary-200">Uniquement sur rendez-vous</p>
+        <ul class="space-y-1 font-sans">
+          {openingHours.map(item => (
+            <li>{item.day}: <span class="text-primary-200">{item.hours}</span></li>
+          ))}
+        </ul>
+      </div>
+      
+      {/* Liens Rapides & Réseaux Sociaux */}
+      <div class="text-center md:text-right">
+        <h3 class="font-script text-3xl mb-6 text-white">Restons Connectés</h3>
+        <div class="flex justify-center md:justify-end space-x-4 mb-6">
+          <a href={socialLinks.facebook} aria-label="Suivez-nous sur Facebook" target="_blank" rel="noopener" class="group">
+            <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white/10 border-2 border-primary-400 group-hover:bg-primary-500 group-hover:border-primary-500 transition-all duration-200 shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-100 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 4.991 3.657 9.128 8.438 9.877v-6.987h-2.54v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.632.771-1.632 1.562v1.875h2.773l-.443 2.89h-2.33v6.987C18.343 21.128 22 16.991 22 12z"/></svg>
+            </span>
+          </a>
+          <a href={socialLinks.instagram} aria-label="Suivez-nous sur Instagram" target="_blank" rel="noopener" class="group">
+            <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white/10 border-2 border-pink-400 group-hover:bg-pink-500 group-hover:border-pink-500 transition-all duration-200 shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-100 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5A3.75 3.75 0 0020 16.25v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.25 2.5a1 1 0 110 2 1 1 0 010-2zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6z"/></svg>
+            </span>
+          </a>
+        </div>
+        <nav aria-label="Navigation secondaire">
+          <ul class="space-y-2 font-sans">
+            <li><a href="/mentions-legales" class="hover:text-primary-300 transition-colors">Mentions légales</a></li>
+            <li><a href="/politique-de-confidentialite" class="hover:text-primary-300 transition-colors">Politique de confidentialité</a></li>
+            {/* Optionnel: Ajouter un lien vers la page Contact si ce n'est pas évident */}
+            {/* <li><a href="/contact" class="hover:text-primary-300 transition-colors">Nous Contacter</a></li> */}
+          </ul>
+        </nav>
+      </div>
+    </div>
+    
+    <div class="mt-12 pt-8 border-t border-accent-700 text-center">
+      <p class="font-sans text-sm text-primary-200/70">© {new Date().getFullYear()} Salon VK Secrets. Tous droits réservés.</p>
+      {/* Optionnel: Crédit discret si vous le souhaitez */}
+      {/* <p class="text-xs text-primary-200/50 mt-1">Site réalisé avec amour</p> */}
+    </div>
+  </div>
+</footer>

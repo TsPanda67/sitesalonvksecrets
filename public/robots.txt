@@ -1,0 +1,10 @@
+# robots.txt
+User-agent: *
+Disallow: /mentions-legales/
+Disallow: /politique-de-confidentialite/
+# Si vous avez d'autres pages que vous ne voulez pas indexer (ex: pages de test, admin)
+# Disallow: /page-test/
+
+Sitemap: https://salonvksecrets.com/sitemap-0.xml
+# Note: Astro génère un sitemap.xml. Si vous n'avez qu'un petit site, le nom sera souvent sitemap-0.xml.
+# Vérifiez le nom exact généré par Astro (dans public/sitemap-*.xml après un build).

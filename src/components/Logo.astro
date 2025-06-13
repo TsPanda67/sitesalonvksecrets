@@ -1,0 +1,35 @@
+---
+// src/components/Logo.astro
+export interface Props {
+  class?: string; // Pour ajouter des classes de style personnalisées depuis l'extérieur
+  width?: number;  // Largeur explicite si besoin de la surcharger
+  height?: number; // Hauteur explicite si besoin de la surcharger
+}
+
+const { class: customClass, width, height } = Astro.props;
+
+// Dimensions intrinsèques de votre image logo-vksecrets.png
+// Si vous connaissez les dimensions exactes, mettez-les ici.
+// Cela aide le navigateur à réserver l'espace même avant que l'image ne charge.
+// D'après votre code précédent, c'était width="180" height="75" pour l'image
+// mais la classe donnait h-16 ou h-20. Précisons.
+const intrinsicWidth = 180; 
+const intrinsicHeight = 75; 
+
+// Le style CSS (`h-16 md:h-20 w-auto`) contrôlera la taille affichée.
+// Les attributs width/height aident au ratio.
+---
+<div class:list={["flex items-center", customClass]}>
+  <!-- Assurez-vous que public/img/logo-vksecrets.png existe -->
+  <img 
+    src="/img/logo-vksecrets.png"
+    alt="Logo du Salon VK Secrets - Fleur d'hibiscus et nom du salon" 
+    width={width || intrinsicWidth} 
+    height={height || intrinsicHeight}
+    class="h-14 md:h-16 w-auto"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <!-- Ajustez la hauteur ici selon le design final du header -->
+  <!-- Le logo dans le header est souvent LCP -->
+</div>

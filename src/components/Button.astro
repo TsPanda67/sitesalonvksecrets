@@ -1,0 +1,81 @@
+---
+// src/components/Button.astro
+import type { HTMLAttributes } from 'astro/types';
+
+// Props communes
+interface BaseProps {
+  variant?: 'primary' | 'secondary' | 'outline' | 'outlineWhite' | 'ghost' | 'link';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+// Props spécifiques quand c'est un lien
+interface LinkProps extends BaseProps, Omit<HTMLAttributes<'a'>, 'class'> {
+  href: string;
+  // Le 'type' d'un <a> n'est pas pertinent ici comme pour un <button>
+}
+
+// Props spécifiques quand c'est un bouton
+interface ButtonElementProps extends BaseProps, Omit<HTMLAttributes<'button'>, 'class' | 'type'> {
+  href?: undefined;
+  type?: 'button' | 'submit' | 'reset'; // Type spécifique et contraint pour les boutons
+}
+
+export type Props = LinkProps | ButtonElementProps;
+
+const { 
+  variant = 'primary', 
+  size = 'md', 
+  class: customClasses,
+  // On destructure 'type' pour le traiter séparément et s'assurer qu'il est correct pour un <button>
+  // On destructure 'href' aussi car il détermine si c'est un <a> ou <button>
+  href,
+  type,
+  ...restProps // Toutes les autres props sont dans restProps
+} = Astro.props as Props;
+
+const baseClasses = "inline-flex items-center justify-center font-sans font-semibold rounded-md transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 hover-lift";
+
+const variantClasses = {
+  primary: "bg-primary-500 text-white hover:bg-primary-400 focus:ring-primary-500 shadow-soft",
+  secondary: "bg-accent-300 text-text-dark hover:bg-accent-100 focus:ring-accent-300 shadow-soft",
+  outline: "border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white focus:ring-primary-500",
+  outlineWhite: "border-2 border-primary-100 text-primary-100 hover:bg-primary-100 hover:text-accent-900 focus:ring-primary-100",
+  ghost: "text-primary-500 hover:bg-primary-100 focus:ring-primary-500 rounded-md",
+  link: "text-primary-500 hover:text-primary-400 hover:underline focus:ring-primary-500 font-medium"
+};
+
+const sizeClasses = {
+  sm: "text-sm px-4 py-2",
+  md: "text-base px-6 py-2.5",
+  lg: "text-lg px-8 py-3"
+};
+
+const computedClasses = [
+  baseClasses,
+  variantClasses[variant],
+  sizeClasses[size],
+  customClasses
+].filter(Boolean).join(' ');
+
+// Déterminer l'attribut 'type' final pour l'élément <button>
+// Il sera toujours l'une des trois valeurs valides, ou 'button' par défaut.
+let buttonTypeAttribute: 'button' | 'submit' | 'reset' = 'button'; 
+if (!href && (type === 'submit' || type === 'reset')) {
+  buttonTypeAttribute = type;
+}
+// Si !href et type est 'button' ou undefined, buttonTypeAttribute reste 'button'.
+// restProps ne contient plus 'type' car il a été destructuré.
+---
+
+{
+  href ? (
+    <a {href} class={computedClasses} {...restProps}>
+      <slot />
+    </a>
+  ) : (
+    <button type={buttonTypeAttribute} class={computedClasses} {...restProps}>
+      <slot />
+    </button>
+  )
+}

@@ -1,0 +1,261 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';        // Utilise la version améliorée
+import ServiceCard from '../components/ServiceCard.astro'; // Utilise le nouveau composant
+import AboutPreview from '../components/AboutPreview.astro'; // Utilise le nouveau composant
+import CtaSection from '../components/CtaSection.astro';   // Utilise le nouveau composant
+import Button from '../components/Button.astro';      // Utilise la version améliorée
+
+// SEO: Titre et Méta-description optimisés pour la page d'accueil
+const pageTitle = "Accueil"; // Le Layout ajoutera "| Salon VK Secrets - Strasbourg Neuhof"
+const metaDescription = "Salon VK Secrets à Strasbourg Neuhof : votre institut de beauté exclusivement féminin. Découvrez nos massages bien-être, épilations douces, soins du corps et onglerie. Prenez rendez-vous au 07 83 96 05 43 pour un moment unique de détente.";
+
+const services = [
+  { 
+    title: "Massages Bien-être", 
+    description: "Voyages sensoriels vers une détente absolue et un lâcher-prise total.",
+    imageUrl: "/img/acl/massage-opt.jpg", // Vérifiez que cette image existe et est optimisée
+    href: "/prestations#massages",
+    altText: "Femme recevant un massage relaxant au Salon VK Secrets à Strasbourg"
+  },
+  { 
+    title: "Soins du Corps & Visage", 
+    description: "Rituels experts pour hydrater, purifier et sublimer votre peau.",
+    imageUrl: "/img/acl/soins-opt.jpg",
+    href: "/prestations#soins-corps", // Ajustez si vous voulez pointer vers #soins-visage ou une ancre #soins générale
+    altText: "Application d'un soin du corps au Salon VK Secrets Strasbourg Neuhof"
+  },
+  { 
+    title: "Épilations Douces", 
+    description: "Notre expertise pour une peau lisse et nette, réalisée avec la plus grande douceur.",
+    imageUrl: "/img/acl/epile-opt.jpg",
+    href: "/prestations#epilations",
+    altText: "Épilation professionnelle pour femme au Salon VK Secrets à Strasbourg"
+  },
+  { 
+    title: "Onglerie Sublimée", 
+    description: "Manucure, pédicure et pose de vernis pour des mains et pieds parfaits et élégants.",
+    imageUrl: "/img/acl/nail-opt.jpg",
+    href: "/prestations#onglerie",
+    altText: "Manucure et beauté des ongles au salon esthétique VK Secrets Strasbourg"
+  }
+];
+
+// Icônes (si vous les utilisez directement ici, sinon elles sont dans les composants)
+const PhoneIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>`;
+const SparkleIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM16 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zm-1.05-6.54l-.707-.707a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414-1.414zM10 18a1 1 0 01-1-1v-1a1 1 0 112 0v1a1 1 0 01-1-1zM3.05 6.54l.707-.707a1 1 0 011.414 1.414l-.707.707a1 1 0 11-1.414-1.414zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1z" clip-rule="evenodd" /></svg>`;
+---
+
+<Layout 
+  title={pageTitle} 
+  description={metaDescription}
+  image="/img/og-image-accueil.jpg"  {/* Image OpenGraph spécifique pour la page d'accueil (à créer dans public/img/) */}
+>
+  <Hero /> {/* Le H1 est dans Hero.astro */}
+  
+  {/* Introduction & USP */}
+  <section class="section-padding bg-background-light">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-3xl mx-auto slide-up">
+        <h2 class="font-display text-3xl md:text-4xl mb-3 text-text-dark decorative-line">
+          Votre Cocon de Bien-Être Exclusif à Strasbourg 
+        </h2>
+        <p class="font-sans text-lg text-text-medium mt-8 leading-relaxed">
+          Bienvenue au Salon VK Secrets ! Verena Hajem, esthéticienne passionnée, vous invite à découvrir un espace unique où expertise rime avec douceur. Profitez de nos <strong class="font-semibold text-primary-500">massages relaxants</strong>, <strong class="font-semibold text-primary-500">épilations professionnelles</strong>, <strong class="font-semibold text-primary-500">soins du corps sur mesure</strong> et <strong class="font-semibold text-primary-500">onglerie</strong> impeccable.
+        </p>
+        <p class="font-sans text-md text-text-medium mt-6">
+            Un moment privilégié, rien que pour vous, dans une ambiance chaleureuse et intimiste. Pour une expérience personnalisée, la prise de rendez-vous se fait <strong class="text-accent-700">par téléphone, WhatsApp ou via mes réseaux sociaux.</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  {/* Section Nouveauté du Mois : Browlift */}
+  <section class="section-padding bg-gradient-to-br from-pink-50 via-primary-100 to-background-light">
+    <div class="container mx-auto px-4">
+      <div class="max-w-2xl mx-auto text-center mb-10 slide-up">
+        <h2 class="font-display text-3xl md:text-4xl mb-3 text-accent-900 decorative-line">
+          Nouveauté du Mois : <span class="text-primary-500">Browlift</span>
+        </h2>
+        <p class="font-sans text-lg text-text-medium mt-6 mb-6">
+          Découvrez le <strong class="text-primary-600">browlift</strong>, la technique tendance pour des sourcils naturellement disciplinés, plus épais et parfaitement dessinés. Résultat bluffant pendant plusieurs semaines, sans maquillage !<br/>
+          <span class="text-accent-700 font-semibold">Essayez-le ce mois-ci au salon VK Secrets !</span>
+        </p>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+        <div class="w-full md:w-1/2 flex flex-col items-center">
+          <div class="relative w-full max-w-xs mx-auto rounded-2xl shadow-xl overflow-hidden bg-white border border-primary-200 p-4">
+            <div id="browlift-slider" class="relative group cursor-pointer select-none">
+              <img id="browlift-after" src="/img/nws/aft.jpg" alt="Sourcils après browlift" class="rounded-xl transition-opacity duration-500" style="opacity:0; position:absolute; top:0; left:0; width:100%; height:auto; z-index:10; pointer-events:none;" />
+              <img id="browlift-before" src="/img/nws/bfr.jpg" alt="Sourcils avant browlift" class="rounded-xl transition-opacity duration-500" style="opacity:1; width:100%; height:auto; z-index:5; pointer-events:none;" />
+              <div id="browlift-handle" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-500 text-white rounded-full shadow-lg flex items-center justify-center cursor-ew-resize transition-transform duration-200" style="width:44px; height:44px; z-index:20; border:3px solid #fff;">
+                <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 19l-7-7 7-7' /></svg>
+                <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7' /></svg>
+              </div>
+              <button id="browlift-toggle" type="button" class="absolute bottom-3 right-3 bg-primary-500 text-white px-4 py-1.5 rounded-full shadow-lg font-sans text-sm font-semibold hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-300 transition-all">
+                Voir après
+              </button>
+            </div>
+            <p class="text-xs text-text-light mt-3">Glissez le rond ou cliquez pour comparer avant/après</p>
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 mt-8 md:mt-0 text-left md:text-left">
+          <ul class="list-disc pl-6 font-sans text-text-medium text-base space-y-2">
+            <li>Discipline et étoffe les sourcils</li>
+            <li>Effet naturel longue durée (4 à 6 semaines)</li>
+            <li>Idéal pour restructurer le regard</li>
+            <li>Prestation rapide et indolore</li>
+          </ul>
+          <a href="/prestations#epilations" class="inline-block mt-6 px-6 py-2 rounded-full bg-primary-500 text-white font-display font-semibold shadow-md hover:bg-primary-600 transition-all">Découvrir la prestation</a>
+          
+          {/* Nouvel encadré tarifaire ajouté */}
+          <div class="mt-8">
+            <div class="bg-white/90 border border-primary-200 rounded-xl shadow-md p-5 text-center max-w-md mx-auto">
+              <div class="font-display text-lg md:text-xl mb-2 text-primary-700">Tarifs au choix</div>
+              <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                <div class="flex-1">
+                  <div class="font-sans text-base text-text-dark">Browlift seul</div>
+                  <div class="font-bold text-2xl text-primary-600">35&nbsp;€</div>
+                </div>
+                <div class="flex-1 border-t md:border-t-0 md:border-l border-primary-100 pt-4 md:pt-0 md:pl-6">
+                  <div class="font-sans text-base text-text-dark">Formule Regard Sublime</div>
+                  <div class="text-sm text-text-medium mb-1">(Épilation + teinture + browlift)</div>
+                  <div class="font-bold text-2xl text-primary-600">50&nbsp;€</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    // Animation slider avant/après browlift améliorée (drag fluide + bouton)
+    const before = document.getElementById('browlift-before');
+    const after = document.getElementById('browlift-after');
+    const toggle = document.getElementById('browlift-toggle');
+    const slider = document.getElementById('browlift-slider');
+    const handle = document.getElementById('browlift-handle');
+    let showAfter = false;
+    let isDragging = false;
+    let dragStartX = 0;
+    let percent = 0;
+    function setSlider(p) {
+      percent = Math.max(0, Math.min(1, p));
+      after.style.opacity = percent;
+      before.style.opacity = 1 - percent;
+      handle.style.left = `${percent * 100}%`;
+    }
+    if (before && after && toggle && slider && handle) {
+      // Toggle bouton
+      toggle.addEventListener('click', () => {
+        showAfter = !showAfter;
+        setSlider(showAfter ? 1 : 0);
+        toggle.textContent = showAfter ? 'Voir avant' : 'Voir après';
+      });
+      // Drag handle (desktop)
+      handle.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        document.body.style.userSelect = 'none';
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+          const rect = slider.getBoundingClientRect();
+          setSlider((e.clientX - rect.left) / rect.width);
+        }
+      });
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+        document.body.style.userSelect = '';
+      });
+      // Touch events
+      handle.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        document.body.style.userSelect = 'none';
+      });
+      window.addEventListener('touchmove', (e) => {
+        if (isDragging && e.touches && e.touches[0]) {
+          const rect = slider.getBoundingClientRect();
+          setSlider((e.touches[0].clientX - rect.left) / rect.width);
+        }
+      });
+      window.addEventListener('touchend', () => {
+        isDragging = false;
+        document.body.style.userSelect = '';
+      });
+      // Clic sur la zone pour toggle
+      slider.addEventListener('click', (e) => {
+        if (e.target !== handle && e.target !== toggle) {
+          showAfter = !showAfter;
+          setSlider(showAfter ? 1 : 0);
+          toggle.textContent = showAfter ? 'Voir avant' : 'Voir après';
+        }
+      });
+      // Init
+      setSlider(0);
+    }
+  </script>
+  {/* Fin nouveauté du mois */}
+  
+  {/* Aperçu des Catégories de Services */}
+  <section class="section-padding bg-white"> {/* Alternance de fond pour rythmer */}
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16 slide-up">
+        <h2 class="font-display text-3xl md:text-4xl mb-3 text-text-dark decorative-line">
+            Plongez dans Notre Univers de Soins
+        </h2>
+        <p class="font-sans text-lg text-text-medium mt-8">
+            Une gamme complète de prestations conçues pour exalter votre beauté naturelle et vous offrir une relaxation profonde.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        {services.map((service, index) => (
+          <div class="slide-up" style={`animation-delay: ${index * 0.1}s;`}>
+            {/* Utilisation du composant ServiceCard que vous avez créé */}
+            <ServiceCard 
+              title={service.title} 
+              description={service.description}
+              imageUrl={service.imageUrl}
+              href={service.href}
+              altText={service.altText}
+            />
+          </div>
+        ))}
+      </div>
+      
+      <div class="text-center mt-12 md:mt-16 slide-up" style="animation-delay: 0.4s;">
+        <Button href="/prestations" variant="primary" size="lg">
+          <Fragment set:html={SparkleIconSVG} />
+          Voir Tous Nos Soins et Tarifs
+        </Button>
+      </div>
+    </div>
+  </section>
+  
+  {/* Aperçu "À Propos" */}
+  <AboutPreview 
+    bgColor="bg-gradient-to-br from-primary-100 to-background-light"
+    imageSrc="/img/acl/verena-preview.jpg" {/* REMPLACER par une image pertinente de Verena ou du salon */}
+    imageAlt="Verena Hajem, esthéticienne passionnée du Salon VK Secrets à Strasbourg"
+    subTitle="Votre Bien-être, Ma Passion"
+    title="Verena Hajem : L'Art du Soin Personnalisé"
+    text1="Animée par la passion du bien-être et forte de mon expertise d'esthéticienne, j'ai créé le Salon VK Secrets pour offrir aux femmes de Strasbourg Neuhof un sanctuaire dédié à leur beauté et leur sérénité."
+    text2="Chaque soin est une rencontre, un moment d'écoute pour comprendre vos attentes et vous offrir une expérience unique, parfaitement adaptée à vos besoins."
+    buttonHref="/a-propos"
+    buttonText="Découvrir Mon Univers"
+    animationDelay="0s"
+  />
+  
+  {/* Section CTA Finale */}
+  <CtaSection
+    bgColor="bg-accent-900"
+    title="Offrez-vous une Parenthèse Enchantée"
+    text="Prête à révéler votre beauté et à vous détendre profondément ? Contactez-moi dès aujourd'hui pour réserver votre moment privilégié au Salon VK Secrets. Je suis impatiente de prendre soin de vous."
+    phone="07 83 96 05 43"
+    phoneIcon={PhoneIconSVG} // Passé comme prop
+    secondaryText="Réservation par téléphone. Retrouvez l'actualité du salon sur Facebook et Instagram !"
+  />
+</Layout>
