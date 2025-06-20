@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+
+const metaDescription = "Brow Lift + épilation cire : le duo gagnant pour des sourcils parfaits à Strasbourg. Découvrez cette technique chez VK Secrets pour un regard sublime.";
+const pageTitle = "Brow Lift & épilation : sourcils parfaits – VK Secrets";
+
+// Images utilisées sur l'index pour la nouveauté
+const nouveauteImages = [
+  { src: '/img/nws/bfr.jpg', alt: 'Sourcils avant Brow Lift' },
+  { src: '/img/nws/aft.jpg', alt: 'Sourcils après Brow Lift' },
+  { src: '/img/nws/fnl.jpg', alt: 'Résultat final Brow Lift' }
+];
+
+const phone = '07 83 96 05 43';
+const whatsapp = 'https://wa.me/33783960543';
+const instagram = 'https://www.instagram.com/vksecrets_salon/';
+---
+
+<Layout title={pageTitle} description={metaDescription}>
+  <article class="prose prose-lg mx-auto px-4 py-16 bg-background-light rounded-2xl shadow-lg max-w-3xl">
+    <section class="mb-8">
+      <h1 class="text-4xl md:text-5xl font-display text-accent-900 mb-4 text-center drop-shadow-lg">Brow Lift & épilation : sourcils parfaits à Strasbourg</h1>
+      <p class="text-center text-lg text-primary-700 font-semibold mb-6">Le duo gagnant pour sublimer votre regard</p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold mb-4 text-accent-800">Tout savoir sur le Brow Lift : des sourcils au top à Strasbourg</h2>
+      <p>Aujourd’hui, nous vous proposons un guide complet pour des sourcils parfaits grâce au Brow Lift avec le kit Peggy Sage, et nous vous expliquons pourquoi l’épilation à la cire est la méthode à privilégier pour dessiner vos sourcils.</p>
+    </section>
+
+    <section class="mb-8">
+      <h3 class="text-xl font-semibold mb-2 text-primary-800">Brow Lift : qu’est-ce que c’est ?</h3>
+      <p>Le Brow Lift, ou rehaussement de sourcils, est une technique innovante qui permet de restructurer et fixer les sourcils vers le haut pour ouvrir le regard. En pratique, on applique des solutions spéciales pour assouplir puis redresser les poils, un peu comme une permanente de cils mais pour vos sourcils. Résultat : des sourcils plus fournis, disciplinés et une ligne parfaitement dessinée pendant environ 5 semaines. Fini les poils rebelles : le brow lift donne un effet bushy brows très tendance, idéal pour les sourcils clairsemés sans maquillage permanent.</p>
+      <p>Le procédé utilise un kit professionnel (comme le kit Peggy Sage) avec une colle fixante, une crème permanente, une crème fixatrice et un sérum nourrissant. Réalisé en institut par une esthéticienne, le brow lift assouplit la kératine du poil pour pouvoir le repositionner, puis le fixe dans la nouvelle forme tout en protégeant les sourcils. Vous obtenez ainsi un résultat durable, harmonieux et adapté à votre visage.</p>
+    </section>
+
+    <section class="mb-8">
+      <h3 class="text-xl font-semibold mb-2 text-primary-800">Pourquoi choisir la cire pour l’épilation des sourcils ?</h3>
+      <p>Si le brow lift s’occupe de donner la forme, il reste essentiel d’épiler le contour des sourcils pour un regard net. Chez VK Secrets à Strasbourg, nous préconisons l’épilation à la cire pour dessiner vos sourcils, plutôt que la pince à épiler seule ou le fil. Pourquoi la cire ? Voici un comparatif :</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+        <div class="bg-green-50 rounded-lg p-4 shadow">
+          <h4 class="font-bold text-green-700 mb-2">Avantages de l’épilation à la cire</h4>
+          <ul class="list-disc pl-5 text-green-900">
+            <li>Rapide : enlève plusieurs poils en un seul geste.</li>
+            <li>Précise : permet de créer une forme nette adaptée à votre visage.</li>
+            <li>Efficace : élimine même le duvet fin pour une peau douce et nette plus longtemps (3 à 4 semaines).</li>
+          </ul>
+        </div>
+        <div class="bg-red-50 rounded-lg p-4 shadow">
+          <h4 class="font-bold text-red-700 mb-2">Inconvénients de l’épilation à la cire</h4>
+          <ul class="list-disc pl-5 text-red-900">
+            <li>Peut provoquer de légères rougeurs temporaires.</li>
+            <li>Nécessite une repousse suffisante des poils entre deux séances.</li>
+            <li>À faire par une professionnelle pour éviter tout problème.</li>
+          </ul>
+        </div>
+      </div>
+      <p>En résumé, la cire en institut offre un résultat propre, symétrique et durable, parfait en complément d’un brow lift. Dans notre salon VK Secrets (Strasbourg Neuhof), nous utilisons une cire pelable spéciale visage, douce pour la peau, afin d’assurer votre confort et un fini impeccable.</p>
+    </section>
+
+    <section class="mb-8">
+      <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+        <div class="flex-1 flex flex-col gap-4">
+          <img src="/img/nws/bfr.jpg" alt="Sourcils avant Brow Lift" class="rounded-xl shadow-md w-full object-cover border-2 border-primary-200" loading="lazy" />
+          <span class="block text-center text-xs text-gray-500 mt-1">Avant</span>
+        </div>
+        <div class="flex-1 flex flex-col gap-4">
+          <img src="/img/nws/aft.jpg" alt="Sourcils après Brow Lift" class="rounded-xl shadow-md w-full object-cover border-2 border-primary-200" loading="lazy" />
+          <span class="block text-center text-xs text-gray-500 mt-1">Après</span>
+        </div>
+      </div>
+      <p class="text-center text-sm text-gray-500 mt-4">Exemple de résultat avant / après un Brow Lift : les sourcils sont plus fournis et disciplinés.</p>
+    </section>
+
+    <section class="mb-8">
+      <h3 class="text-xl font-semibold mb-2 text-primary-800">Étape par étape : notre protocole Peggy Sage au Salon VK Secrets</h3>
+      <ol class="list-none space-y-6">
+        <li class="flex items-start gap-4 bg-white/80 border-l-4 border-primary-400 rounded-xl shadow p-4">
+          <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-primary-100 text-primary-700 font-bold text-lg">1</span>
+          <span><strong>Préparation :</strong> démaquillage et nettoyage des sourcils (shampooing doux), puis brossage des poils.</span>
+        </li>
+        <li class="flex items-start gap-4 bg-white/80 border-l-4 border-primary-400 rounded-xl shadow p-4">
+          <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-primary-100 text-primary-700 font-bold text-lg">2</span>
+          <span><strong>Crème permanente n°1 :</strong> on applique une crème qui assouplit les poils, puis on recouvre le sourcil d’un film plastique. Temps de pose : 6 à 10 min.</span>
+        </li>
+        <li class="flex items-start gap-4 bg-white/80 border-l-4 border-primary-400 rounded-xl shadow p-4">
+          <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-primary-100 text-primary-700 font-bold text-lg">3</span>
+          <span><strong>Crème fixatrice n°2 :</strong> après avoir retiré la crème n°1 et repositionné les poils vers le haut, on applique la crème fixatrice qui fige la nouvelle forme. Temps de pose : 6 à 10 min sous film.</span>
+        </li>
+        <li class="flex items-start gap-4 bg-white/80 border-l-4 border-primary-400 rounded-xl shadow p-4">
+          <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-primary-100 text-primary-700 font-bold text-lg">4</span>
+          <span><strong>Soin final :</strong> on nettoie les sourcils pour éliminer tout résidu, puis on applique un sérum nourrissant.</span>
+        </li>
+        <li class="flex items-start gap-4 bg-white/80 border-l-4 border-primary-400 rounded-xl shadow p-4">
+          <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-primary-100 text-primary-700 font-bold text-lg">5</span>
+          <span><strong>Le Soin et la Teinture (en option, 15 min) :</strong> Nous retirons les résidus de produits et appliquons un soin nourrissant pour hydrater la peau et les poils. Si vous le souhaitez, nous pouvons terminer par une teinture pour intensifier la couleur et donner une impression de densité encore plus forte.</span>
+        </li>
+      </ol>
+      <p class="mt-4">Les sourcils sont enfin brossés et mis en forme finale. La séance complète dure environ 45 minutes. Pour un résultat absolument parfait, nous terminons par une épilation à la cire des petits poils autour des sourcils. Vous repartez ainsi avec des sourcils “wow” : liftés, bien dessinés et parfaitement épilés, sans aucun maquillage !</p>
+    </section>
+
+    <section class="mb-8">
+      <img src="/img/acl/epile-opt.jpg" alt="L’épilation à la cire des sourcils permet d’obtenir une ligne de sourcils nette et bien dessinée." class="rounded-xl shadow-md mx-auto mb-2 w-full md:w-2/3 object-cover" loading="lazy" />
+      <p class="text-center text-sm text-gray-500">L’épilation à la cire des sourcils permet d’obtenir une ligne de sourcils nette et bien dessinée.</p>
+    </section>
+
+    <section class="mb-8">
+      <h3 class="text-xl font-semibold mb-2 text-primary-800">Questions fréquentes</h3>
+      <div class="space-y-4">
+        <div>
+          <span class="font-bold">Q : Le brow lift est-il douloureux ?</span><br />
+          <span>R : Pas du tout. Le rehaussement de sourcils est indolore – au maximum, on ressent un léger picotement quand les produits agissent.</span>
+        </div>
+        <div>
+          <span class="font-bold">Q : Combien de temps durent les effets d’un brow lift ?</span><br />
+          <span>R : Le résultat d’un brow lift se maintient environ 5 à 6 semaines, selon le cycle de repousse de vos poils. Il est tout à fait possible de refaire une séance toutes les 6 semaines pour conserver des sourcils impeccables en continu.</span>
+        </div>
+        <div>
+          <span class="font-bold">Q : Le brow lift abîme-t-il les sourcils ? Y a-t-il des contre-indications ?</span><br />
+          <span>R : Non, pas s’il est réalisé par une professionnelle avec des produits de qualité. Le brow lift n’abîme pas les poils et le sérum final les renforce. Il n’y a pas de contre-indication majeure (sauf peau irritée ou allergie aux produits).</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-primary-100 rounded-xl p-6 mb-8 shadow-md">
+      <h4 class="font-bold text-primary-900 mb-2">Points clés à retenir :</h4>
+      <ul class="list-disc pl-5">
+        <li>Le brow lift offre des sourcils disciplinés et plus fournis pendant plusieurs semaines.</li>
+        <li>L’épilation à la cire garantit une ligne de sourcils nette et symétrique sans maquillage.</li>
+      </ul>
+    </section>
+
+    <div class="flex flex-col sm:flex-row flex-wrap gap-4 justify-center mt-8">
+      <Button 
+        href={`tel:${phone}`} 
+        variant="outline" 
+        size="lg"
+        class="border-pink-400 text-pink-600 hover:bg-pink-50 hover:border-pink-500 focus:ring-pink-400 group"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-pink-400 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+        Appeler
+      </Button>
+      <Button 
+        href={whatsapp} 
+        variant="outline" 
+        size="lg"
+        class="border-green-500 text-green-700 hover:bg-green-50 hover:border-green-600 focus:ring-green-500"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A12 12 0 003.48 20.52l-1.3 4.77a1 1 0 001.22 1.22l4.77-1.3A12 12 0 0020.52 3.48zm-8.52 17A10 10 0 1119 5a10 10 0 01-7 15zm4.29-7.71l-2.29-2.29a1 1 0 00-1.42 0l-2.29 2.29a1 1 0 001.42 1.42l1.29-1.3V17a1 1 0 002 0v-2.59l1.29 1.3a1 1 0 001.42-1.42z"/></svg>
+        WhatsApp
+      </Button>
+      <Button 
+        href={instagram} 
+        variant="outline" 
+        size="lg"
+        class="border-pink-400 text-pink-600 hover:bg-pink-50 hover:border-pink-500 focus:ring-pink-400"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-pink-400" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5zm4.25 2.25a5.25 5.25 0 1 1-5.25 5.25a5.25 5.25 0 0 1 5.25-5.25zm0 1.5a3.75 3.75 0 1 0 3.75 3.75a3.75 3.75 0 0 0-3.75-3.75zm6 1.25a1 1 0 1 1-2 0a1 1 0 0 1 2 0z"/></svg>
+        Instagram
+      </Button>
+    </div>
+
+    <section class="bg-primary-50 rounded-xl p-6 mt-12 shadow-md">
+      <h2 class="text-2xl font-bold mb-2 text-primary-900">Conclusion</h2>
+      <p class="mb-2">En bref, le brow lift associé à l’épilation à la cire est le duo gagnant pour sublimer votre regard. Chez VK Secrets, institut de beauté à Strasbourg Neuhof, nous révélons votre beauté avec des techniques douces et professionnelles. N’attendez plus pour découvrir le pouvoir du brow lift : une séance peut faire toute la différence !</p>
+      <p class="font-semibold">Prête à chouchouter vos sourcils ? Réservez dès maintenant votre séance au Salon VK Secrets (Strasbourg Neuhof) – contact 7j/7 par téléphone, WhatsApp ou via les réseaux sociaux !</p>
+    </section>
+  </article>
+</Layout>

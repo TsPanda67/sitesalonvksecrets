@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const metaDescription = "Blog du Salon VK Secrets à Strasbourg : bientôt des articles sur nos produits, conseils beauté, nouveautés et coups de cœur du salon.";
+import Button from '../components/Button.astro';
+const metaDescription = "Blog du Salon VK Secrets à Strasbourg : découvrez nos articles sur les produits, conseils beauté, nouveautés et explications sur les soins proposés au salon.";
 ---
 
 <Layout title="Blog" description={metaDescription}>
@@ -8,12 +9,15 @@ const metaDescription = "Blog du Salon VK Secrets à Strasbourg : bientôt des a
     <h1 class="font-display text-5xl md:text-6xl text-center text-accent-900 mb-8 drop-shadow-lg">Blog</h1>
     <div class="max-w-2xl mx-auto text-center">
       <p class="font-sans text-xl md:text-2xl text-text-medium mb-8">
-        <span class="inline-block bg-primary-50 px-4 py-2 rounded-xl shadow-md font-semibold text-primary-700">Bientôt sur le site&nbsp;!</span>
+        <span class="inline-block bg-primary-50 px-4 py-2 rounded-xl shadow-md font-semibold text-primary-700">Notre premier article est enfin là&nbsp;!</span>
       </p>
       <p class="font-sans text-lg text-text-medium">
-        Retrouvez prochainement nos articles&nbsp;: présentation de produits, conseils beauté, nouveautés, coups de cœur, et explications sur les soins proposés au salon VK Secrets.<br>
-        Nous partagerons pourquoi nous avons sélectionné chaque produit, leurs bienfaits, et comment ils subliment votre beauté au naturel.
+        Découvrez nos conseils, nouveautés, et explications sur les soins proposés au salon VK Secrets.<br>
+        Nous partageons pourquoi nous avons sélectionné chaque produit, leurs bienfaits, et comment ils subliment votre beauté au naturel.
       </p>
+      <div class="mt-8 flex flex-col md:flex-row gap-4 justify-center">
+        <Button href="/blog-brow-lift" variant="primary">Brow Lift & épilation : sourcils parfaits</Button>
+      </div>
     </div>
   </section>
 </Layout>
