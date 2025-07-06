@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const planityId = import.meta.env.PUBLIC_PLANITY_ID;
 const pageTitle = "Prendre Rendez-vous";
 const metaDescription = "Réservez votre prochain moment de détente au Salon VK Secrets à Strasbourg Neuhof. Choisissez votre prestation et votre créneau horaire en quelques clics via notre module de réservation sécurisé.";
+const planityKey = import.meta.env.PUBLIC_PLANITY_ID;
 ---
 
 <Layout 
@@ -23,7 +23,7 @@ const metaDescription = "Réservez votre prochain moment de détente au Salon VK
   <section class="section-padding bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto bg-background-light rounded-xl shadow-soft p-4 md:p-8 slide-up">
-        <div id="planity-widget-container">
+        <div id="planity-rdv-container" data-planity-key={planityKey}>
           <noscript>
             <p class="text-red-600 font-semibold">Pour réserver en ligne, veuillez activer JavaScript ou <a href="https://www.planity.com/salon-vk-secrets-67100-strasbourg" class="text-primary-600 underline" target="_blank" rel="noopener">cliquez ici pour accéder à la réservation Planity</a>.</p>
           </noscript>
@@ -32,30 +32,17 @@ const metaDescription = "Réservez votre prochain moment de détente au Salon VK
     </div>
   </section>
 
-  <script is:inline>
-    // On récupère la variable d'environnement côté serveur et on la rend accessible côté client via un attribut data-
-    const planityId = document.currentScript?.getAttribute('data-planity-id') || "OSdE3dbraLarkUGDaA3";
-    function loadPlanityWidget() {
-      if (!planityId) return;
-      if (window.PlanityWidget) {
-        window.PlanityWidget.init({
-          element: '#planity-widget-container',
-          proId: planityId,
-          width: '100%',
-          height: '800px',
-          locale: 'fr-FR'
-        });
-      }
+  <script>
+    var container = document.getElementById('planity-rdv-container');
+    var planityKey = container?.getAttribute('data-planity-key');
+    if (container && planityKey) {
+      window.planity = {
+        key: planityKey,
+        primaryColor: '#EDA9A1', // Rose harmonisé avec le site
+        appointmentContainer: container // Affiche uniquement le module Prendre RDV
+      };
     }
-    (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) { loadPlanityWidget(); return; }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://d2skjte8udjqxw.cloudfront.net/widget/production/2/app.latest.js";
-      js.onload = loadPlanityWidget;
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'planity-jssdk'));
   </script>
-  <script is:inline data-planity-id={planityId}></script>
+  <script src="https://d2skjte8udjqxw.cloudfront.net/widget/production/2/polyfills.latest.js"></script>
+  <script src="https://d2skjte8udjqxw.cloudfront.net/widget/production/2/app.latest.js"></script>
 </Layout>
