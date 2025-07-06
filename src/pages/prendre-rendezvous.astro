@@ -1,19 +1,61 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const metaDescription = "Prise de rendez-vous en ligne au Salon VK Secrets à Strasbourg : réservez facilement votre soin, massage ou prestation beauté. Formulaire à venir.";
+
+const planityId = import.meta.env.PUBLIC_PLANITY_ID;
+const pageTitle = "Prendre Rendez-vous";
+const metaDescription = "Réservez votre prochain moment de détente au Salon VK Secrets à Strasbourg Neuhof. Choisissez votre prestation et votre créneau horaire en quelques clics via notre module de réservation sécurisé.";
 ---
 
-<Layout title="Prendre rendez-vous" description={metaDescription}>
-  <section class="pt-32 pb-24 min-h-[60vh] flex flex-col items-center justify-center bg-gradient-to-br from-primary-100 to-background-light">
-    <h1 class="font-display text-4xl md:text-5xl text-center text-accent-900 mb-8 drop-shadow-lg">Prendre rendez-vous</h1>
-    <div class="max-w-2xl mx-auto text-center">
-      <p class="font-sans text-xl md:text-2xl text-text-medium mb-8">
-        <span class="inline-block bg-primary-50 px-4 py-2 rounded-xl shadow-md font-semibold text-primary-700">Bientôt disponible&nbsp;!</span>
-      </p>
-      <p class="font-sans text-lg text-text-medium">
-        Vous pourrez prochainement réserver votre soin, massage ou prestation beauté directement en ligne sur cette page.<br>
-        Un formulaire simple et sécurisé sera mis à votre disposition pour choisir la prestation, la date et l’horaire de votre choix.
+<Layout 
+  title={pageTitle} 
+  description={metaDescription}
+>
+  <section class="section-padding pt-24 md:pt-28 bg-gradient-to-br from-primary-100 to-background-light text-center">
+    <div class="container mx-auto px-4 slide-up">
+      <h1 class="font-display text-4xl md:text-5xl mb-3 text-text-dark">Prendre Rendez-vous</h1>
+      <p class="font-script text-2xl md:text-3xl mb-6 text-primary-500">Votre pause bien-être commence ici</p>
+      <p class="font-sans text-lg text-text-medium max-w-2xl mx-auto mb-10">
+        Choisissez la ou les prestations qui vous font envie, sélectionnez le créneau qui vous arrange et laissez-vous guider. C'est simple, rapide et sécurisé.
       </p>
     </div>
   </section>
+
+  <section class="section-padding bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto bg-background-light rounded-xl shadow-soft p-4 md:p-8 slide-up">
+        <div id="planity-widget-container">
+          <noscript>
+            <p class="text-red-600 font-semibold">Pour réserver en ligne, veuillez activer JavaScript ou <a href="https://www.planity.com/salon-vk-secrets-67100-strasbourg" class="text-primary-600 underline" target="_blank" rel="noopener">cliquez ici pour accéder à la réservation Planity</a>.</p>
+          </noscript>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    // On récupère la variable d'environnement côté serveur et on la rend accessible côté client via un attribut data-
+    const planityId = document.currentScript?.getAttribute('data-planity-id') || "OSdE3dbraLarkUGDaA3";
+    function loadPlanityWidget() {
+      if (!planityId) return;
+      if (window.PlanityWidget) {
+        window.PlanityWidget.init({
+          element: '#planity-widget-container',
+          proId: planityId,
+          width: '100%',
+          height: '800px',
+          locale: 'fr-FR'
+        });
+      }
+    }
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { loadPlanityWidget(); return; }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://d2skjte8udjqxw.cloudfront.net/widget/production/2/app.latest.js";
+      js.onload = loadPlanityWidget;
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'planity-jssdk'));
+  </script>
+  <script is:inline data-planity-id={planityId}></script>
 </Layout>
